@@ -3,16 +3,18 @@ import { connect } from 'react-redux';
 
 import { FilterActions } from '../state';
 
-const Search = ({filters, addFilter}) => (
+const Search = ({filters, addFilter}) => {
+    console.log('search render')
+    return (
     <div className="search-page">
         <h1>Search Page</h1>
         <section className="col-sm-4 filter-list">
             <h5>Filter Options</h5>
             <button onClick={() => addFilter('bmw', 'series 4') }>BWM</button>
-            <input placeholder="Min Price" onChange={(evt) => addFilter('minPrice', evt.target.value)} />
+            <input placeholder="Min Price" onKeyUp={(evt) => addFilter('minPrice', evt.target.value)} />
         </section>
     </div>
-)
+)}
 
 const stateToProps = state => {
     return {
