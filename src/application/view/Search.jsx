@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { FilterActions } from '../state';
 
 const Search = ({filters, addFilter}) => {
-    console.log('search render')
+    //TODO: Change to React Component, and implement should component update to check if update was called only as a result of a query string param update
     return (
     <div className="search-page">
         <h1>Search Page</h1>
