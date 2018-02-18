@@ -1,0 +1,22 @@
+$normal: url('./fonts/OpenSans-Regular-webfont.woff') format('woff');
+$medium: url('./fonts/OpenSans-SemiBold-webfont.woff') format('woff');
+$bold: url('./fonts/OpenSans-ExtraBold-webfont.woff') format('woff');
+
+$fontFamily: 'OpenSans';
+$fontFamilySemiBold: 'OpenSans-SemiBold';
+$fontFamilyHeavy: 'OpenSans-Heavy';
+
+@font-face {
+    font-family: $fontFamily;
+    src: $normal;    
+}
+
+@font-face {
+    font-family: $fontFamilySemiBold;
+    src: $medium;    
+}
+
+@font-face {
+    font-family: $fontFamilyHeavy;
+    src: $bold;    
+}

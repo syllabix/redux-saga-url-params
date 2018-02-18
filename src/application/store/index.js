@@ -3,8 +3,8 @@ import createSagaMiddleWare from 'redux-saga';
 import { createStore, applyMiddleware, compose } from 'redux';
 
 //Application Imports
-import sagas from '../sagas';
-import reducers from '../reducer';
+import sagas from '../saga';
+import { reducers } from '../state';
 
 const sagaMiddleWare = createSagaMiddleWare();
 

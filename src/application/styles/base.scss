@@ -1,0 +1,44 @@
+/**
+*    VARIABLES AND MIXINS ONLY!
+*    All other styles should be added in separate files and linked in base.scss
+*/
+
+ //Common Colors
+$black: #202020;
+$white: #ffffff;
+$grey: #ccc;
+$darkGrey: #999;
+$lightGrey: #f5f5f5;
+$shadowColor: rgba(0,0,0,0.25); 
+
+//App Colors
+$primary: #3A383B;
+$secondary: #04A7FF;
+$tertiary: #5D4299;
+
+//State Colors
+$error: #F24236;
+$warning: #F5B700;
+$success: #2BA84A;
+$info: #04A7FF;
+$focus: $white;
+$selected: #2BA84A;
+
+//Backgrounds
+$siteBackground: $white;
+
+//Fonts
+$primaryFont: $fontFamily, 'sans-serif';
+$primaryTextColor: $black;
+
+$mediumFont: $fontFamilySemiBold, 'sans-serif';
+$heavyFont: $fontFamilyHeavy, 'sans-serif';
+
+//Font Size
+$smallFontSize: 15px;
+$extraSmallFontSize: 12px;
+
+//Spacing
+$inputPadding: 4px;
+$contentPadding: 12px;
+$buttonPadding: 8px;

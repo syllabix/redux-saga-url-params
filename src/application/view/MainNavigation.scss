@@ -1,0 +1,24 @@
+.main-navigation {
+    display: flex;
+    padding: $contentPadding;
+    align-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid $darkGrey;
+    box-shadow: 0 1px 1px 0px $shadowColor;
+
+    h1 {
+        flex-grow: 1;
+    }
+
+    nav {
+        justify-self: flex-end
+    }
+
+    a {
+        padding: $buttonPadding;
+
+        &.active {
+            color: $selected
+        }
+    }
+}

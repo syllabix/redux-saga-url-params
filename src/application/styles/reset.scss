@@ -1,0 +1,106 @@
+// RESETS ONLY
+
+html,
+body {
+    font-family: $primaryFont;
+    background-color: $siteBackground;
+    color: $primaryTextColor;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#app {
+    position: relative;
+    margin: auto;
+    max-width: 1180px;
+}
+
+#app,
+[data-reactroot] {
+    height: 100%;
+    width: 100%;
+}
+
+input,
+textarea {
+    padding: $inputPadding;
+    -webkit-appearance: none;
+    background: none;
+    color: $primaryTextColor;
+    border: none;
+    outline: none;
+}
+
+button {
+    background: none;
+    border: none;
+    -webkit-appearance: none;
+    font-family: $primaryFont;
+    color: inherit;
+}
+
+hr {
+    margin: 0;
+    font-weight: normal;
+    border-top: none $darkGrey;
+    border-left: none $darkGrey;
+    border-right: none $darkGrey;
+    border-bottom: 1px solid $darkGrey;
+}
+
+a {
+    color: $secondary;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h2,
+h3 {
+    font-family: $heavyFont;
+}
+
+h4,
+h5 {
+    font-family: $mediumFont;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+p {
+    margin: 0;
+}
+
+.clearfix {
+    zoom: 1;
+    &:before {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+}
+
+.page-wrapper {
+    padding-top: $contentPadding;
+    padding-bottom: $contentPadding;
+}

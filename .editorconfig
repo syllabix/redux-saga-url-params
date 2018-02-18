@@ -1,0 +1,52 @@
+root = true
+
+[*]
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+
+[*.xml]
+indent_style = space
+indent_size = 2
+
+[*.config]
+indent_style = space
+indent_size = 2
+
+[*.md]
+indent_size = 4
+indent_style = space
+trim_trailing_whitespace = false
+
+[*.json]
+indent_size = 4
+indent_style = space
+
+[*.js]
+indent_size = 4
+indent_style = space
+
+[*.jsx]
+indent_size = 4
+indent_style = space
+
+[*.scss]
+indent_size = 4
+indent_style = space
+
+[*.css]
+indent_size = 4
+indent_style = space
+
+[*.html]
+indent_size = 4
+indent_style = space
+
+[*.cmd]
+indent_size = 2
+indent_style = space
+
+[*.min.*]
+indent_style = ignore
+trim_trailing_whitespace = false
+insert_final_newline = ignore
