@@ -4,8 +4,8 @@ import qs from 'qs';
 const history = createBrowserHistory();
 
 const parseURLParams = (params = '') => {
-    let search = params.replace(/^\?/, '');
-    return qs.parse(search);
+    const p = qs.parse(params, { strictNullHandling: true, ignoreQueryPrefix: true, encode: false });
+    return p 
 }
 
 export {
