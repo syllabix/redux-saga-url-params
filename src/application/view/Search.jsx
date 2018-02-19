@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { FilterActions } from '../state';
-import _get from 'lodash/get';
 
 //jconst Search = ({filters, addFilter}) => {
 //j    //TODO: Change to React Component, and implement should component update to check if update was called only as a result of a query string param update
@@ -22,9 +21,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props)
     this.handleFilterToggle = this.handleFilterToggle.bind(this)
-    this.handleFilterToggle = this.handleFilterToggle.bind(this)
     this.toggleFilter = this.toggleFilter.bind(this)
-    this.handleFilter = this.handleFilter.bind(this)
   }
 
   shouldComponentUpdate (nextProps, nextState) {
@@ -32,47 +29,48 @@ class Search extends React.Component {
     return (filters !== nextProps.filters)
   }
 
-  toggleFilter (key) {
-    const { addFilter, filters } = this.props
+  toggleFilter (key, filters) {
     if (key in filters && filters[key] !== null) {
-      console.log('- ', key) 
-      addFilter(key, null)
+      return null
     } else {
-      console.log('+ ', key) 
-      addFilter(key, [''])
+      return ['']
     }
   }
 
   handleFilterToggle (event) {
     const { filters, addFilter } = this.props
-    const [ child, ...parents ] = event.target.value.split('.').reverse()
+    const [ child, ...parents ] = event.target.value.split('.').reverse() // support nested filters?
+    const name = event.target.name
+
     if (parents.length === 0) {
-      return this.toggleFilter(child)
+      return name.length > 0
+        ? addFilter(name, child)
+        : addFilter(child, this.toggleFilter(child, filters))
     }
-    parents.forEach((p, i) => {
+
+    function getFilterValue (p, child) {
       if (filters[p] !== undefined && filters[p] !== null) {
         if (Array.isArray(filters[p])) {
           if (filters[p].includes(child)) {
-						if (filters[p].length === 1) {
-							addFilter(p, null)
-						} else {
-              const rest = filters[p].filter(f => f !== child)
-              addFilter(p, rest)
+            if (filters[p].length === 1) {
+              return null
+            } else {
+              return filters[p].filter(f => f !== child)
             }
           } else {
-            const newFilters = [ ...filters[p], child ]
-            addFilter(p, newFilters)
+            return [ ...filters[p], child ]
           }
         }
-      } else {
-        addFilter(p, [child])
       }
-    })
-  }
+      return [child]
+    }
 
-  handleFilter (event) {
-    const { filters, addFilter } = this.props
-    const path = event.target.value.split('.')
+    const p = parents[0]
+    addFilter(
+      p,
+      getFilterValue(p, child)
+    )
+
   }
 
   render () {
@@ -84,15 +82,19 @@ class Search extends React.Component {
           <h5>Filter Options</h5>
           <h6>Make/Model</h6>
             {filterSchema.make.map(m => {
-              const makeStyle = { color: (filters && m in filters && filters[m] !== null) ? 'palevioletred' : 'black' }
+              const isMakeActive = (filters && m in filters && filters[m] !== null)
+              const makeStyle = { color: isMakeActive ? 'palevioletred' : 'black' }
               return (
                 <div key={m} >
-                  <b><button style={makeStyle} onClick={this.handleFilterToggle} value={m}>{m}</button></b>
+                  <button style={makeStyle} onClick={this.handleFilterToggle} value={m}>{m}</button>
                   <ul>
                     {filterSchema.model[m].map(md => {
-                      const modelStyle = { color: (filters[m] && filters[m].includes(md)) ? 'palevioletred' : 'black' }
+                      const isModelActive = (filters[m] && filters[m].includes(md)) 
+                      const modelStyle = { color: isModelActive ? 'palevioletred' : 'black' }
                       return (
-                        <li key={m+md}><button style={modelStyle} onClick={this.handleFilterToggle} value={`${m}.${md}`}>{md}</button></li>
+                        <li key={m+md}>
+                          <button style={modelStyle} onClick={this.handleFilterToggle} value={`${m}.${md}`}>{md}</button>
+                        </li>
                       )
                     }
                    )}
@@ -103,7 +105,7 @@ class Search extends React.Component {
             )}
             
             <h6>Price</h6>
-            <input placeholder="Min Price" onKeyUp={(evt) => addFilter('minPrice', evt.target.value)} />
+            <input placeholder="Min Price" name={'minPrice'} onKeyUp={this.handleFilterToggle} />
         </section>
       </div>
     )
