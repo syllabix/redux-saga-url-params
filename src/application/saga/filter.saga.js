@@ -7,7 +7,7 @@ const getFilters = state => state.filters
 
 function * filterUpdate(action) {
     const curFilters = yield select(getFilters)
-    const params = qs.stringify(Object.assign({}, curFilters, action.payload));
+    const params = qs.stringify(Object.assign({}, curFilters, action.payload), { strictNullHandling: true, encode: false });
     history.replace(`?${params}`)
 }
 
